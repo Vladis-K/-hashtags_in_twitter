@@ -1,0 +1,111 @@
+$main-color: rgba(98, 0, 234, .6)
+$search-color: rgba(68, 157, 68, .2)
+
+body
+  font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif
+  overflow-x: hidden
+  margin: 0
+  padding: 0
+
+header
+  //background: url("../img/header.jpg") no-repeat center top
+  background-size: cover
+  position: relative
+  height: 950px
+  width: 100%
+  margin: 0
+  padding: 0
+
+.searching
+  margin: 0
+  padding-top: 20px
+
+form
+  position: relative
+  margin: 0 auto
+
+button.btn-success
+  color: #555
+  border: 1px solid #ccc
+
+button.btn
+  border-radius: 0
+  background-color: $search-color
+
+.form-control
+  border-radius: 0
+  background-color: $search-color
+
+.form-control-ahtung
+  background-color: red
+
+option
+  height: 40px
+  width: 50px
+
+#videoframes
+  margin: 0
+
+.videoCard
+  margin-top: 30px
+  border: 1px solid #b7b7b7
+
+.videoCard:hover
+  background-color: #D6D6D6
+
+.videoCard
+  iframe
+    height: auto
+    width: 100%
+    overflow: hidden
+    top: 0
+    left: 0
+  div>span
+    background-color: rgba(68, 157, 68, .3)
+    color: #1a237e
+    padding: 0 3px
+  .timemovie
+    display: block
+    width: 100%
+    margin: 0
+    padding: 3px
+    font-weight: 400
+    background-color: rgba(68, 157, 68, .3)
+    height-max: 50px
+
+.audioCard
+  position: relative
+  width: 100%
+  margin-top: 15px
+  transition: 1s
+
+
+.audioCard:hover
+  background: #D6D6D6
+
+.audioCard
+  div
+    display: inline-block
+    height: auto
+    overflow: hidden
+  div.artist
+    font-weight: 500
+  button
+    background-color: transparent
+    border: none
+  button>i
+    font-size: 12px
+  //color: rgba(68, 157, 68, 1)
+  div.duration
+    position: absolute
+    right: 5px
+    color: #9e9f9f
+
+#liveSearch
+
+
+#showElse
+  margin-top: 30px
+
+.showAfterSearch
+  display: none
