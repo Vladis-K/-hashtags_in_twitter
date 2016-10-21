@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="">
+    <meta name="Description" content="">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="css/vendor.min.css">
+
+    <link rel="stylesheet" href="css/main.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+<header>
+    <!--<div class="main">-->
+    <!--</div>-->
+    <div class="container searching">
+        <div class="row">
+            <div class="col-md-push-4 col-md-6 col-sm-push-2 col-sm-8 col-xs-12">
+                <form id="searchForm" >
+                    <div class="input-group">
+                        <input type="text" id="textInput" class="form-control" name="q" placeholder="Search here...">
+                        <span class="input-group-btn">
+                        <button id="newSubmit" type="submit" class="btn btn-default" >
+                          <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                   </span>
+                        <select id="mySearch" class="form-control" name="choice">
+                            <option value="video">Video</option>
+                            <option value="audio">Audio</option>
+                        </select>
+                    </div>
+                </form>
+                <span id="feedback"></span>
+                <span id="videoframes"></span>
+            </div>
+        </div>
+    </div>
+
+
+</header>
+
+<!--<footer>-->
+<!--<div class="row">-->
+<!--<div class="col-md-12">-->
+<!--</div>-->
+<!--</div>-->
+<!--</footer>-->
+
+<script src="js/vendor.min.js"></script>
+
+<script src="js/main.min.js"></script>
+</body>
+
+</html>

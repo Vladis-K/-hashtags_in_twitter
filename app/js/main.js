@@ -1,5 +1,6 @@
 
 //Set focus on textInput field
+/*
 window.addEventListener('load', setUp, false);
 
 function setUp(){
@@ -7,7 +8,7 @@ function setUp(){
 	textInput = document.getElementById('textInput');
 	textInput.focus();
 };
-
+*/
 //Check field
 /*
 var el = document.getElementById('textInput');
@@ -32,66 +33,55 @@ else {
 }
 */
 
-var newSubmit = document.getElementById('newSubmit')
+    var showInfo = document.getElementById('showInfo');
 
-newSubmit.addEventListener ('submit', showData, false);
+    if(showInfo.addEventListener){
+        showInfo.addEventListener('click', getInfo, false);
+    }
+    else {
+        showInfo.attachEvent('click', getInfo);
+    }
 
-function showData(url, showFunction) {
+    function getInfo() {
 
-	var access_token_video = "882d879e80d1d624154c5c64e526a174966a25a86ea06095a6c5b5a7f5f1f006475f9553dd5104d11dbf6";
-	var getText = document.getElementById('textInput').value;
-	console.log(getText);
-	var url = "https://api.vk.com/method/video.search?sort=2&" + getText + "&access_token=" + access_token_video + "&v=V";
-	console.log(url);
+    var request = new XMLHttpRequest();
+    //var url = "https://api.vk.com/method/video.search?sort=2&q=prydz&access_token=aa21aa6a7ec66ce3214257ee98f0e39b1dee37c0cd4a0645ee2b0c7d3de78cf66c8291fd06c69bcddf586&v=V";
+    //var url ="https://api.vk.com/method/users.get?user_ids=210700286&fields=bdate&v=5.59";
+    var url ="myCheck.json";
+
+    request.open("GET", url, true);
+
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            var myData = JSON.parse(request.responseText);
+            myFunction(myData);
+            console.log(myData);
+        }
+    };
+
+    request.send();
+
+    function myFunction(data) {
+        var out = "";
+        var allData = data.response.length;
+        console.log(allData);
+        for(var i = 0; i < allData; i++) {
+            out += '<div>'
+            out += "<img src=" + data.response[i].image_medium + ">" + "<br>";
+            out += data.response[i].title;
+            out += '</div>'
+        }
+        document.getElementById("download").innerHTML = out;
+    }
 
 
-	var request = new XMLHttpRequest();
-
-	// request.onreadystatechange = function () {
-	// 	if (this.readyState == 4 && this.status == 200) {
-	// 		showFunction();
-	// 	}
-	// }
-	request.open('GET', url, true);
-	request.send(null);
 }
-
-// request.onload =
-
-    request.onload = function showFunction() {
-
-		for (var i = 0; i < 5; i++) {
-			console.log(catalog[i]);
-			var newContent = '';
-			newContent += "<div class='videoCard'>";
-			newContent += "<iframe src=' " + catalog[i].player + "' frameborder='0' allowfullscreen></iframe>";
-			newContent += "<span>" + timeWell(catalog[i].duration) + "</span>";
-			newContent += "<div class='timemovie'>" + compression(catalog[i].title) + "</div>";
-			newContent += "</div>";
-		}
-		document.getElementById('videoframes').innerHTML = newContent;
-	}
-
-
-
-
-
-/*
-window.addEventListener('beforeunload', function(event) {
-	// This example has been updated to improve cross-browser compatibility (as recommended by MDN)
-	var message = 'You have changes that have not been saved';
-	(event || window.event).returnValue = message;
-	return message;
-});
-*/
-
 
 
 
 /*jQuery(document).ready(function(){
 
 	$('#searchForm').on( "submit", function(event){
-
 		$("span#videoframes").html("");
 		event.preventDefault();
 		var $textInput = $('input:text');
@@ -189,24 +179,6 @@ window.addEventListener('beforeunload', function(event) {
 
 				// };
 
-
-				// NEXT LOADING
-				// $('#showElse').on('click', function() {
-				// 	var initial = 2;
-				// 	function checkIteration(initial) {
-				// 		return initial = initial+2 ;
-				// 	};
-				// 	for (i = checkIteration(initial); i<(initial+2); i++) {
-				// 		console.log(catalog[i]);
-				// 		newContent += "<div class='videoCard'>";
-				// 		newContent += " <iframe src=' "+ catalog[i].player +"' frameborder='0' allowfullscreen></iframe>";
-				// 		newContent += "<div>" + "<span>" + timeWell(catalog[i].duration) + "</span>";
-				// 		newContent += "<div class='timemovie'>" +  compression(catalog[i].title) + "</div>";
-				// 		newContent += "</div>";
-				// 	};
-				// 	$('#videoframes').after(newContent);
-				// 	return false;
-				// });
 
 
 				// 1st variant
