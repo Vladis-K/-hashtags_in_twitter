@@ -1,41 +1,16 @@
+//Focus on textInput field
 
-//Set focus on textInput field
 /*
 window.addEventListener('load', setUp, false);
-
 function setUp(){
 	var textInput;
 	textInput = document.getElementById('textInput');
 	textInput.focus();
 };
 */
-//Check field
-/*
-var el = document.getElementById('textInput');
-
-var elMsg = document.getElementById('feedback');
-function checkUsername(){
-		var username = el.value;
-		if(username.length < 3){
-			setTimeout(function (){
-			elMsg.textContent = 'Должно быть минимум 3 символа...';}, 1500);
-		}
-		else {
-			elMsg.textContent = '';
-		}
-};
-
-if(el.addEventListener){
-	el.addEventListener('keydown', checkUsername, false);
-}
-else {
-	el.attachEvent('keydown', checkUsername);
-}
-*/
-
     var showInfo = document.getElementById('showInfo');
 
-    if(showInfo.addEventListener){
+    if (showInfo.addEventListener){
         showInfo.addEventListener('click', getInfo, false);
     }
     else {
@@ -44,8 +19,13 @@ else {
 
     function getInfo() {
 
-    var request = new XMLHttpRequest();
-    //var url = "https://api.vk.com/method/video.search?sort=2&q=prydz&access_token=aa21aa6a7ec66ce3214257ee98f0e39b1dee37c0cd4a0645ee2b0c7d3de78cf66c8291fd06c69bcddf586&v=V";
+		if (window.XMLHttpRequest) {
+			request = new XMLHttpRequest();
+		} else if (window.ActiveXObject) { // IE 6 and older
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+    //var url = "https://api.vk.com/method/video.search?sort=2&q=prydz&access_token=bc42929ad6ee3879c83db520843e5cb880bdd3e27c7f4c52c12933e5450442d38f0e93c2b82031cda521a&v=V";
     //var url ="https://api.vk.com/method/users.get?user_ids=210700286&fields=bdate&v=5.59";
     var url ="myCheck.json";
 
@@ -53,30 +33,85 @@ else {
 
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            var myData = JSON.parse(request.responseText);
-            myFunction(myData);
-            console.log(myData);
+        	//Check the types of data
+        	var type = request.getResponseHeader("Content-Type");
+			console.log(type);
+
+			if (type === "application/json") {
+				getData(JSON.parse(request.responseText));
+
+			}
+			else {
+				getData(request.responseText);
+			}
+
+            // var myData = JSON.parse(request.responseText);
+            // getData(myData);
+            // console.log(myData);
         }
     };
 
-    request.send();
+    request.send(null);
 
-    function myFunction(data) {
+
+
+    function getData(data) {
+
+		console.log(data);
+
         var out = "";
         var allData = data.response.length;
         console.log(allData);
-        for(var i = 0; i < allData; i++) {
+
+        for (var i = 0; i < allData; i++) {
             out += '<div>'
             out += "<img src=" + data.response[i].image_medium + ">" + "<br>";
             out += data.response[i].title;
             out += '</div>'
+
         }
         document.getElementById("download").innerHTML = out;
     }
 
+/*	// parent
 
-}
+function nodeVisitor(key, value) {
+			console.log([
+                                    // Use JSON.stringify for nicer-looking output
+				JSON.stringify(this), // parent
+				JSON.stringify(key),
+				JSON.stringify(value)
+			].join(' # '));
+			return value; // don't change node
+		}
+*/
 
+};
+
+
+//Check field
+/*
+ var el = document.getElementById('textInput');
+
+ var elMsg = document.getElementById('feedback');
+ function checkUsername(){
+ var username = el.value;
+ if(username.length < 3){
+ setTimeout(function (){
+ elMsg.textContent = 'Должно быть минимум 3 символа...';}, 1500);
+ }
+ else {
+ elMsg.textContent = '';
+ }
+ };
+
+ if(el.addEventListener){
+ el.addEventListener('keydown', checkUsername, false);
+ }
+ else {
+ el.attachEvent('keydown', checkUsername);
+ }
+ */
 
 
 /*jQuery(document).ready(function(){
