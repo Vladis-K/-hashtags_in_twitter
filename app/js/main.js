@@ -45,9 +45,7 @@ function allTogether(data){
     }
 
     function getInfo(){
-
         var getText = document.getElementById("textInput").value;
-
         if (getText.length > 0){
             document.getElementById("download").innerHTML = getText;
             console.log(getText);
@@ -57,7 +55,6 @@ function allTogether(data){
             return false;
         }
     }
-
 
 
 /*
